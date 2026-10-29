@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<title>小D · 黑板</title>
+<link rel="stylesheet" href="/style.css" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0a0f16; overflow: auto; }
+  body { padding: 10px 10px 14px; }
+  .board-card { margin: 0; }
+  .board-card pre { max-height: none; }
+  .widget-close {
+    position: fixed; top: 6px; right: 8px; z-index: 9;
+    border: 1px solid rgba(255,255,255,0.12); background: rgba(20,26,36,0.9);
+    color: #9fb0c6; border-radius: 7px; width: 24px; height: 24px; line-height: 1;
+    font-size: 14px; cursor: pointer;
+  }
+  .widget-close:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+  .widget-tip { color: #5b6a7e; font-size: 10.5px; text-align: right; padding: 8px 2px 0; }
+</style>
+</head>
+<body>
+<button class="widget-close" id="closeBtn" title="关闭黑板">×</button>
+<div id="root"><div class="empty-board"><div class="empty-icon">⌁</div><p>黑板是空的</p><span>小D 讲解时会写在这里。</span></div></div>
+<div class="widget-tip">常驻置顶 · 关掉这个窗口就用 ×</div>
+<script type="module" src="/board.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# 统一换行符，避免 Windows/Linux 贡献者互相改全文件
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.png binary
+*.mp3 binary

@@ -1,0 +1,15 @@
+{
+  "name": "dsh-tutor",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "小D — a local, voice-first AI programming tutor that can actually use your computer (with your permission).",
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.mjs",
+    "setup": "powershell -ExecutionPolicy Bypass -File setup.ps1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

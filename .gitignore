@@ -1,0 +1,18 @@
+# runtime data (conversations, screenshots, tts cache, captured screen)
+data/
+
+# local config with your API key
+config.json
+
+# generated dependencies
+vendor/
+stt/py311/
+stt/models/
+.setup/
+node_modules/
+
+# temp
+.tmp/
+*.log
+*.mp3
+*.wav

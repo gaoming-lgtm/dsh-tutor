@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>小D · 编程私教</title>
+<link rel="stylesheet" href="/style.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23ffb45c'/></svg>" />
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
+<div id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">小D</span>
+      <span class="brand-sub">编程私教</span>
+    </div>
+
+    <div class="status-pill" id="statusPill"><i></i><span id="statusText">在线</span></div>
+
+    <div class="top-actions">
+      <label class="select-wrap" title="换模型">
+        <select id="modelSelect"></select>
+      </label>
+      <div class="balance-pill" id="balancePill" title="DeepSeek 账户余额">
+        <span class="balance-label">余额</span>
+        <span id="balanceValue">—</span>
+      </div>
+      <button class="ghost-btn" id="newChatBtn">新对话</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage">
+      <div class="voice-deck">
+        <div class="orb-wrap" id="orbWrap">
+          <canvas id="viz" width="320" height="320"></canvas>
+          <button class="orb" id="orbBtn" title="点一下开始说话">
+            <span class="orb-halo"></span>
+            <span class="orb-core"></span>
+            <svg class="orb-icon" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+              <path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Z" fill="currentColor"/>
+              <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+            </svg>
+          </button>
+        </div>
+        <div class="voice-meta">
+          <div class="voice-title" id="voiceTitle">跟我说话就行</div>
+          <div class="voice-sub" id="voiceSub">点麦克风，或直接打字 · 我会一句一句讲</div>
+          <div class="voice-chips">
+            <button class="chip" id="voiceToggle" data-on="1">朗读：开</button>
+            <select id="voiceSelect" class="chip-select" title="音色"></select>
+            <button class="chip" id="screenBtn" title="截屏并识别，看看我在做什么">看我的屏幕</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="messages" id="messages" aria-live="polite"></div>
+
+      <div class="composer" id="composer">
+        <button class="mic-btn" id="micBtn" title="按住说话 / 点一下开始">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Z" fill="currentColor"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/></svg>
+        </button>
+        <textarea id="input" rows="1" placeholder="打字，或者按右边的麦克风说话…"></textarea>
+        <button class="send-btn" id="sendBtn" title="发送 (Enter)">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="composer-hint" id="composerHint">Enter 发送 · Shift+Enter 换行 · 语音识别用 Edge 浏览器效果最好</div>
+    </section>
+
+    <aside class="board">
+      <div class="board-head">
+        <div class="board-tabs" role="tablist">
+          <button data-tab="board" class="active">黑板</button>
+          <button data-tab="plan">计划</button>
+          <button data-tab="files">文件</button>
+          <button data-tab="allow">权限</button>
+        </div>
+        <span class="board-badge" id="boardBadge">等待上课</span>
+        <button class="mini-btn" id="boardPopBtn" title="把黑板弹成置顶小窗，压在 PyCharm 旁边">⧉ 弹出</button>
+      </div>
+
+      <div class="board-body">
+        <div class="tab-pane" id="tab-board">
+          <div class="empty-board">
+            <div class="empty-icon">⌁</div>
+            <p>黑板是空的</p>
+            <span>当小D讲解、示范代码时，会写在这里。</span>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab-plan" hidden>
+          <div class="empty-board">
+            <div class="empty-icon">☰</div>
+            <p>还没有计划</p>
+            <span>复杂一点的任务，小D会先列步骤。</span>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab-files" hidden>
+          <div class="tree" id="fileTree"><div class="empty-board"><p>加载中…</p></div></div>
+        </div>
+        <div class="tab-pane" id="tab-allow" hidden>
+          <div id="allowBody"><div class="empty-board"><p>加载中…</p></div></div>
+        </div>
+      </div>
+
+      <div class="board-foot">
+        <div class="root-line" title="AI 只能在这个目录里动手">
+          <span class="root-label">教学目录</span>
+          <span class="root-path" id="rootPath">—</span>
+        </div>
+        <button class="ghost-btn tiny" id="pickRootBtn">更换</button>
+      </div>
+    </aside>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

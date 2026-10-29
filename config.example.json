@@ -1,0 +1,9 @@
+{
+  "model": "deepseek-v4-pro",
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "tts": "auto",
+  "apiBase": "https://api.deepseek.com",
+  "apiKey": "",
+  "port": 7842,
+  "projectRoot": ""
+}
