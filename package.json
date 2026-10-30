@@ -5,6 +5,20 @@
   "type": "module",
   "description": "小D — a local, voice-first AI programming tutor that can actually use your computer (with your permission).",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gaoming1232026/dsh-tutor.git"
+  },
+  "homepage": "https://gitee.com/gaoming1232026/dsh-tutor",
+  "keywords": [
+    "ai-tutor",
+    "voice",
+    "tts",
+    "speech-recognition",
+    "local-first",
+    "windows",
+    "deepseek"
+  ],
   "scripts": {
     "start": "node server.mjs",
     "setup": "powershell -ExecutionPolicy Bypass -File setup.ps1"
