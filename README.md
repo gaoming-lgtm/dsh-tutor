@@ -33,7 +33,7 @@
 前置：**Node.js 18+**；建议装 **ffmpeg**（语音转码用，装完在 PATH 里即可）。
 
 ```powershell
-git clone https://gitee.com/gaoming1232026/dsh-tutor.git
+git clone https://github.com/gaoming-lgtm/dsh-tutor.git
 cd dsh-tutor
 
 # 一次性安装：嵌入式 Python 3.11 + 离线识别 + 可选 Edge TTS
@@ -45,6 +45,8 @@ powershell -ExecutionPolicy Bypass -File setup.ps1
 
 start.cmd
 ```
+
+> 国内网络克隆慢的话，可以用 Gitee 镜像：<https://gitee.com/gaoming1232026/dsh-tutor>
 
 启动后会自动用 Edge 打开一个带 token 的地址，例如：
 
